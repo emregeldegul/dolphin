@@ -1,0 +1,88 @@
+{% extends "assets/bases/app.html" %}
+
+{% block content %}
+    <table class="table table-bordered datatable" id="table_of_collections">
+        <thead>
+        <tr class="replace-inputs">
+            <th>Title</th>
+            <th>Description</th>
+            <th>Privacy</th>
+            <th>Tag(s)</th>
+            <th>Updated Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for collection in the_collections %}
+            <tr class="odd gradeX">
+                <td><a href="{{ url_for("collection.collection_detail", uuid=collection.uuid) }}">{{ collection.title }}</a>
+                </td>
+                <td>{{ collection.description }}</td>
+                <td>{{ collection.privacy.value }}</td>
+                <td>
+                    {% for tag in collection.tags %}
+                        <div class="label label-primary">{{ tag.name }}</div>
+                    {% endfor %}
+                </td>
+                <td>{{ collection.updated_at }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Privacy</th>
+            <th>Tag(s)</th>
+            <th>Updated Date</th>
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}
+
+{#
+    {% block css %}
+        <link rel="stylesheet" href="{{ url_for("static", filename="assets/neon_template/js/datatables/datatables.css") }}">
+        <link rel="stylesheet" href="{{ url_for("static", filename="assets/neon_template/js/select2/select2-bootstrap.css") }}">
+        <link rel="stylesheet" href="{{ url_for("static", filename="assets/neon_template/js/select2/select2.css") }}">
+    {% endblock %}
+
+    {% block js %}
+        <script src="{{ url_for("static", filename="assets/neon_template/js/datatables/datatables.js") }}"></script>
+        <script src="{{ url_for("static", filename="assets/neon_template/js/select2/select2.min.js") }}"></script>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                var $table_of_collections = jQuery("#table_of_collections");
+
+                var table_of_collections = $table_of_collections.DataTable({
+                    "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    "order": [[4, "desc"]]
+                });
+
+                // Initalize Select Dropdown after DataTables is created
+                $table_of_collections.closest('.dataTables_wrapper').find('select').select2({
+                    minimumResultsForSearch: -1
+                });
+
+                // Setup - add a text input to each footer cell
+                $('#table_of_collections tfoot th').each(function () {
+                    var title = $('#table_of_collections thead th').eq($(this).index()).text();
+                    $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
+                });
+
+                // Apply the search
+                table_of_collections.columns().every(function () {
+                    var that = this;
+
+                    $('input', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
+            });
+        </script>
+    {% endblock %}
+#}

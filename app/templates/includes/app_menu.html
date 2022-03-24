@@ -1,0 +1,27 @@
+<div class="panel panel-primary" data-collapsed="0">
+    <div class="panel-body">
+        <div id="list-1" class="nested-list dd with-margins">
+            <ul class="dd-list">
+                <li class="dd-item">
+                    <a href="{{ url_for("collection.collection_create") }}" class="btn btn-block btn-primary">Create Collection</a>
+                    <hr>
+                    <div class="dd-handle">
+                        <i class="entypo-bag"></i> <a href="{{ url_for("collection.collection_index") }}">All Collections</a>
+                    </div>
+                    <div class="dd-handle">
+                        <i class="entypo-ticket"></i> <a href="{{ url_for("collection.collection_index", type="unlabeled") }}">Unlabeled Collections</a>
+                    </div>
+                    <div class="dd-handle">
+                        <i class="entypo-pencil"></i> <a href="{{ url_for("collection.tag_index") }}">Manage Tags</a>
+                    </div>
+                    <hr>
+                    {% for menu_tag in menu_tag_navigation %}
+                        <div class="dd-handle">
+                            <i class="entypo-tag"></i> <a href="{{ url_for("collection.collection_index", tag=menu_tag.name) }}">{{ menu_tag.name }} ({{ menu_tag.active_collection_count() }})</a>
+                        </div>
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

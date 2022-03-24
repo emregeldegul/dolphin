@@ -1,0 +1,107 @@
+<header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <!-- logo -->
+        <div class="navbar-brand">
+            <a href="{{ url_for("collection.collection_index") }}">
+                <img src="{{ url_for("static", filename="assets/images/dolphin_logo.png") }}" width="120" alt="" style="opacity:0.4;filter:alpha(opacity=40)" onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100" onmouseout="this.style.opacity=0.4;this.filters.alpha.opacity=40"/>
+            </a>
+        </div>
+        <!-- main menu -->
+        <ul class="navbar-nav">
+            {% if current_user.is_authenticated %}
+                <li class="has-sub">
+                    <a href="{{ url_for("collection.collection_index") }}">
+                        <i class="entypo-home"></i>
+                        <span class="title">Home Page</span>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a href="{{ url_for("main.about") }}">
+                        <i class="entypo-vcard"></i>
+                        <span class="title">About</span>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a href="{{ url_for("profile.index") }}">
+                        <i class="entypo-user"></i>
+                        <span class="title">My Profile</span>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a href="{{ url_for("profile.password") }}">
+                        <i class="entypo-key"></i>
+                        <span class="title">Password</span>
+                    </a>
+                </li>
+                <li class="active has-sub">
+                    <a href="{{ url_for("collection.collection_index") }}">
+                        <i class="entypo-bag"></i>
+                        <span class="title">My Collections</span>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a href="">
+                        <i class="entypo-share"></i>
+                        <span class="title">Public Collections</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="has-sub">
+                    <a href="{{ url_for("main.index") }}">
+                        <i class="entypo-home"></i>
+                        <span class="title">Home Page</span>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a href="{{ url_for("main.about") }}">
+                        <i class="entypo-vcard"></i>
+                        <span class="title">About</span>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a href="{{ url_for("auth.login") }}">
+                        <i class="entypo-user"></i>
+                        <span class="title">Login</span>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a href="{{ url_for("auth.register") }}">
+                        <i class="entypo-user-add"></i>
+                        <span class="title">Register</span>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a href="">
+                        <i class="entypo-share"></i>
+                        <span class="title">Public Collections</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+        {% if current_user.is_authenticated %}
+            <!-- notifications and other links -->
+            <ul class="nav navbar-right pull-right">
+                <!-- raw links -->
+                <li class="dropdown">
+                <li>
+                    <a href="#">{{ current_user.full_name }}</a>
+                </li>
+                <li class="sep"></li>
+                <li>
+                    <a href="{{ url_for("auth.logout") }}">
+                        Log Out <i class="entypo-logout right"></i>
+                    </a>
+                </li>
+                <!-- mobile only -->
+                <li class="visible-xs">
+                    <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+                    <div class="horizontal-mobile-menu visible-xs">
+                        <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+                            <i class="entypo-menu"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+</header>

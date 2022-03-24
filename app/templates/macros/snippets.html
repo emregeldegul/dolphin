@@ -1,0 +1,40 @@
+{# Render snippet form.
+
+This macro is intended to render both regular snippet subforms (received from the
+server) and the template form used to dynamically add more forms.
+
+Arguments:
+    - subform: Form object to render
+    - index: Index of the form. For proper subforms rendered in the form snippet,
+             this should match `loop.index0`, and for the template it should be
+             '_'
+#}
+{%- macro render_snippet_form(subform, index) %}
+    <div id="snippet-{{ index }}-form" class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    {{ subform.file_name.label(class="control-label") }}
+                    {{ subform.file_name(class="form-control") }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    {{ subform.file_lang.label(class="control-label") }}
+                    {{ subform.file_lang(class="form-control") }}
+                </div>
+            </div>
+            <div class="col-md-4" style="line-height: 70px;">
+                <button type="button" class="remove_snippet btn btn-danger" id="add_snippet">Remove Snippet</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    {{ subform.content.label(class="control-label") }}
+                    {{ subform.content(class="form-control", rows=8) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{%- endmacro %}

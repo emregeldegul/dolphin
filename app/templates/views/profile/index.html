@@ -1,0 +1,34 @@
+{% extends "assets/bases/base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        {{ error(form) }}
+        {{ alert() }}
+        <form method="POST" action="">
+            {{ form.csrf_token() }}
+            <div class="form-group">
+                {{ form.first_name.label() }}
+                {{ form.first_name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.last_name.label() }}
+                {{ form.last_name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.username.label() }}
+                {{ form.username(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label() }}
+                {{ form.email(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.note.label() }}
+                {{ form.note(class="form-control", rows=5) }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </main>
+{% endblock %}

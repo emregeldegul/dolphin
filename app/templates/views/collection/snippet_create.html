@@ -1,0 +1,61 @@
+{% extends "assets/bases/app.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ error(form) }}
+            {{ alert() }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a href="{{ url_for("collection.collection_detail", uuid=the_collection.uuid) }}" class="btn btn-default btn-icon icon-left">Go To Collection <i class="entypo-left-circled"></i></a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary" data-collapsed="0">
+                <div class="panel-heading">
+                    <div class="panel-title">Create Snippet</div>
+                </div>
+                <div class="panel-body">
+                    <form action="" method="POST">
+                        {{ form.csrf_token() }}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {{ form.name.label(class="control-label") }}
+                                    {{ form.name(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {{ form.language.label(class="control-label") }}
+                                    {{ form.language(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {{ form.privacy.label(class="control-label") }}
+                                    {{ form.privacy(class="form-control") }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.content.label(class="control-label") }}
+                                    {{ form.content(class="form-control", rows=15) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-primary btn-block") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "assets/bases/app.html" %}
+{% from "macros/snippets.html" import render_snippet_form %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ error(form) }}
+            {{ alert() }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a href="{{ url_for("collection.collection_detail", uuid=the_collection.uuid) }}" class="btn btn-default btn-icon icon-left">Go To Collection <i class="entypo-left-circled"></i></a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary" data-collapsed="0">
+                 <div class="panel-heading">
+                        <div class="panel-title">{{ title }}</div>
+                    </div>
+                 <div class="panel-body">
+                    <form role="form" action="" class="form-groups-bordered" method="POST">
+                        {{ form.csrf_token() }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ form.title.label(class="control-label") }}
+                                    {{ form.title(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ form.privacy.label(class="control-label") }}
+                                    {{ form.privacy(class="form-control") }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.description.label(class="control-label") }}
+                                    {{ form.description(class="form-control") }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.tags.label(class="form-check-label") }}:
+                                    {% for choice in form.tags %}
+                                        {{ choice(class="form-check-input") }}
+                                        {{ choice.label(class="form-check-label") }} &nbsp;
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {#
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{ form.tags.label(class="form-check-label") }}
+                                        {% for choice in form.tags %}
+                                            <div class="checkbox checkbox-replace" style="padding-bottom: 5px;">
+                                                {{ choice(class="form-check-input") }}
+                                                {{ choice.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        #}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.submit(class="btn btn-info") }}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

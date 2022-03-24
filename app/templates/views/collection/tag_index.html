@@ -1,0 +1,62 @@
+{% extends "assets/bases/app.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ error(form) }}
+            {{ alert() }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-primary" data-collapsed="0">
+                <!-- panel head -->
+                <div class="panel-heading">
+                    <div class="panel-title">Create Tag</div>
+                </div>
+                <!-- panel body -->
+                <div class="panel-body">
+                    <form action="" method="POST">
+                        {{ form.csrf_token() }}
+                        <div class="form-group">
+                            {{ form.name.label(class="control-label") }}
+                            {{ form.name(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.privacy.label(class="control-label") }}
+                            {{ form.privacy(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.color.label(class="control-label") }}
+                            {{ form.color(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-primary btn-block") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-primary" data-collapsed="0">
+                <!-- panel head -->
+                <div class="panel-heading">
+                    <div class="panel-title">Tags</div>
+                </div>
+                <!-- panel body -->
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {% for tag in the_tags %}
+                            <li class="list-group-item">
+                                <span class="badge badge-primary">{{ tag.active_collection_count() }}</span>
+                                <a href="{{ url_for("collection.tag_detail", uuid=tag.uuid) }}">
+                                    {{ tag.name }} ({{ tag.privacy.value }})
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
