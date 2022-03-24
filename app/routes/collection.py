@@ -288,6 +288,7 @@ def snippet_detail_raw(uuid):
         the_snippet=the_snippet,
     )
 
+
 @collection.route("/snippet/detail/<string:uuid>/delete", methods=["DELETE"])
 @login_required
 def snippet_delete(uuid):

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "assets/bases/base.html" %}
 
-</body>
-</html>
+{% block content %}
+    <b>Author: </b> {{ the_snippet.collection.user.username }} <br>
+    <b>Created / Updated Date: </b> {{ the_snippet.created_at }} / {{ the_snippet.updated_at }}
+    <hr>
+    <pre><code class="{{ the_snippet.language }}">{{ the_snippet.content }}</code></pre>
+{% endblock %}
