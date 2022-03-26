@@ -15,24 +15,6 @@
                         <span class="title">Home Page</span>
                     </a>
                 </li>
-                <li class="has-sub">
-                    <a href="{{ url_for("main.about") }}">
-                        <i class="entypo-vcard"></i>
-                        <span class="title">About</span>
-                    </a>
-                </li>
-                <li class="has-sub">
-                    <a href="{{ url_for("profile.index") }}">
-                        <i class="entypo-user"></i>
-                        <span class="title">My Profile</span>
-                    </a>
-                </li>
-                <li class="has-sub">
-                    <a href="{{ url_for("profile.password") }}">
-                        <i class="entypo-key"></i>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
                 <li class="active has-sub">
                     <a href="{{ url_for("collection.collection_index") }}">
                         <i class="entypo-bag"></i>
@@ -46,16 +28,10 @@
                     </a>
                 </li>
             {% else %}
-                <li class="has-sub">
+                <li class="active has-sub">
                     <a href="{{ url_for("main.index") }}">
                         <i class="entypo-home"></i>
                         <span class="title">Home Page</span>
-                    </a>
-                </li>
-                <li class="has-sub">
-                    <a href="{{ url_for("main.about") }}">
-                        <i class="entypo-vcard"></i>
-                        <span class="title">About</span>
                     </a>
                 </li>
                 <li class="has-sub">
@@ -78,13 +54,13 @@
                 </li>
             {% endif %}
         </ul>
-        {% if current_user.is_authenticated %}
-            <!-- notifications and other links -->
-            <ul class="nav navbar-right pull-right">
+        <!-- notifications and other links -->
+        <ul class="nav navbar-right pull-right">
+            {% if current_user.is_authenticated %}
                 <!-- raw links -->
                 <li class="dropdown">
                 <li>
-                    <a href="#">{{ current_user.full_name }}</a>
+                    <a href="{{ url_for("profile.index") }}">{{ current_user.full_name }}</a>
                 </li>
                 <li class="sep"></li>
                 <li>
@@ -92,16 +68,16 @@
                         Log Out <i class="entypo-logout right"></i>
                     </a>
                 </li>
-                <!-- mobile only -->
-                <li class="visible-xs">
-                    <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-                    <div class="horizontal-mobile-menu visible-xs">
-                        <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
-                            <i class="entypo-menu"></i>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        {% endif %}
+            {% endif %}
+            <!-- mobile only -->
+            <li class="visible-xs">
+                <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+                <div class="horizontal-mobile-menu visible-xs">
+                    <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+            </li>
+        </ul>
     </div>
 </header>

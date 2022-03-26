@@ -81,7 +81,7 @@
                 </div>
             </div>
             <footer class="main">
-                &copy; 2022 <strong>{{ config["TITLE"] }}</strong> {{ config["BRIEF"] }} by <a href="{{ config["AUTHOR_URL"] }}" target="_blank">{{ config["AUTHOR"] }}</a>
+                &copy; 2022 <strong>{{ config["TITLE"] }}</strong> {{ config["BRIEF"] }} by <a href="{{ url_for("main.about") }}" target="_blank">{{ config["AUTHOR"] }}</a>
             </footer>
         </div>
     </div>
