@@ -12,3 +12,8 @@ def index():
 @main.route("/about")
 def about():
     return render_template("views/main/about.html", title="About")
+
+
+@main.route("/public_collections")
+def public_collections():
+    return render_template("views/main/public_collections.html", title="Public Collections")

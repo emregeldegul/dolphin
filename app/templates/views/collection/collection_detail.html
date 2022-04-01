@@ -22,7 +22,7 @@
     </div>
     <hr>
     {% for snippet in the_snippets %}
-        <div class="panel panel-primary"> <!-- data-collapsed="0" -->
+        <div class="panel panel-primary" data-collapsed="{{ loop.index0 }}"> <!-- data-collapsed="0" -->
             <div class="panel-heading">
                 <div class="panel-title">{{ snippet.name }} ({{ snippet.language }}) -> {{ snippet.privacy.value }}</div>
                 <div class="panel-options">
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <pre><code class="{{ snippet.language }}">{{ snippet.content | e }}</code></pre>
+                <pre><code class="language-{{ snippet.language }}">{{ snippet.content | e }}</code></pre>
             </div>
         </div>
     {% endfor %}
@@ -74,4 +74,13 @@
             })
         }
     </script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/languages/go.min.js"></script>
 {% endblock %}

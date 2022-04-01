@@ -69,20 +69,22 @@
         <!-- Header Finish -->
 
         <div class="main-content">
-            <div class="row">
+            <div class="container">
+                <div class="row">
                 <div class="col-md-12">
                     <h1>{{ title }}</h1>
                     <hr>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    {% block content %} {% endblock %}
+                <div class="row">
+                    <div class="col-md-12">
+                        {% block content %} {% endblock %}
+                    </div>
                 </div>
+                <!-- Footer Start -->
+                    {% include "includes/app_footer.html" %}
+                <!-- Footer Finish -->
             </div>
-            <footer class="main">
-                &copy; 2022 <strong>{{ config["TITLE"] }}</strong> {{ config["BRIEF"] }} by <a href="{{ url_for("main.about") }}" target="_blank">{{ config["AUTHOR"] }}</a>
-            </footer>
         </div>
     </div>
 
