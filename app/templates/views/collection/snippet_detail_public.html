@@ -1,18 +1,14 @@
 {% extends "assets/bases/base.html" %}
 
 {% block content %}
-    <b>Author: </b> {{ the_snippet.collection.user.username }} <br>
+    <b>Author: </b> {{ the_snippet.collection.user.username }}<br>
     <b>Created / Updated Date: </b> {{ the_snippet.created_at }} / {{ the_snippet.updated_at }}
     <hr>
-    <pre><code class="language-{{ snippet.language }}">{{ snippet.content | e }}</code></pre>
+    <pre><code class="language-{{ the_snippet.language }}">{{ the_snippet.content | e }}</code></pre>
 {% endblock %}
 
-
-    <script>hljs.initHighlightingOnLoad();</script>
-{% endblock %}
 
 {% block js %}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}
 
