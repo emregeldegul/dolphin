@@ -4,5 +4,21 @@
     <b>Author: </b> {{ the_snippet.collection.user.username }} <br>
     <b>Created / Updated Date: </b> {{ the_snippet.created_at }} / {{ the_snippet.updated_at }}
     <hr>
-    <pre><code class="{{ the_snippet.language }}">{{ the_snippet.content }}</code></pre>
+    <pre><code class="language-{{ snippet.language }}">{{ snippet.content | e }}</code></pre>
+{% endblock %}
+
+
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
+
+{% block js %}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/languages/go.min.js"></script>
 {% endblock %}
