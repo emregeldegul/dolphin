@@ -23,6 +23,11 @@ class Settings:
     # Database Settings
     SQLALCHEMY_DATABASE_URI = getenv("SQLALCHEMY_DATABASE_URI", "sqlite:///" + path.join(BASEDIR, "dolphin.db"))
     SQLALCHEMY_TRACK_MODIFICATIONS = getenv("SQLALCHEMY_TRACK_MODIFICATIONS", False)
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        "pool_size": 20,
+        "pool_recycle": 60,
+        "pool_pre_ping": True
+    }
 
     # Mail Settings
     MAIL_SERVER = getenv("MAIL_SERVER", "smtp.googlemail.com")
