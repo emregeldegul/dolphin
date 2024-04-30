@@ -20,3 +20,6 @@ class LangType(Enum):
     html = "HTML"
     python = "Python"
     php = "PHP"
+    sql = "SQL"
+    javascript = "JavaScript"
+    go = "GO"

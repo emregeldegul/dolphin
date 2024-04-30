@@ -34,7 +34,10 @@ class SnippetForm(Form):
             (LangType.markdown.name, LangType.markdown.value),
             (LangType.html.name, LangType.html.value),
             (LangType.python.name, LangType.python.value),
-            (LangType.php.name, LangType.php.value)
+            (LangType.php.name, LangType.php.value),
+            (LangType.sql.name, LangType.sql.value),
+            (LangType.javascript.name, LangType.javascript.value),
+            (LangType.go.name, LangType.go.value),
         ],
         render_kw={"placeholder": "Snippet Lang"},
     )
@@ -106,7 +109,10 @@ class CreateSnippetForm(FlaskForm):
             (LangType.markdown.name, LangType.markdown.value),
             (LangType.html.name, LangType.html.value),
             (LangType.python.name, LangType.python.value),
-            (LangType.php.name, LangType.php.value)
+            (LangType.php.name, LangType.php.value),
+            (LangType.sql.name, LangType.sql.value),
+            (LangType.javascript.name, LangType.javascript.value),
+            (LangType.go.name, LangType.go.value),
         ],
     )
     privacy = SelectField(

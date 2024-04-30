@@ -14,7 +14,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, current_user
 from flask_mail import Mail
-from flask_jsglue import JSGlue
 
 from settings import settings
 from app.models.enums import Status
@@ -23,7 +22,6 @@ db = SQLAlchemy()
 migrate = Migrate()
 login_manager = LoginManager()
 mail = Mail()
-jsglue = JSGlue()
 
 
 def unauthorized(e):
@@ -47,7 +45,6 @@ def create_app():
     migrate.init_app(app, db)
     login_manager.init_app(app)
     mail.init_app(app)
-    jsglue.init_app(app)
 
     login_manager.login_view = "auth.login"
     login_manager.login_message = "Please Login To Access This Page"
